@@ -28,6 +28,14 @@ def create_app():
     app.register_blueprint(customers_bp, url_prefix="/api/customers")
     app.register_blueprint(orders_bp, url_prefix="/api/orders")
 
+    @app.route("/")
+    def home():
+        return {
+            "message": "Inventory Management API",
+            "status": "running",
+            "health": "/api/health"
+        }
+
     @app.route("/api/health")
     def health():
         return {"status": "ok"}
